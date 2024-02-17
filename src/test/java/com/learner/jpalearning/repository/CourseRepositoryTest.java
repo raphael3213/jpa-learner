@@ -5,6 +5,7 @@ import com.learner.jpalearning.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -46,5 +47,28 @@ class CourseRepositoryTest {
 
 
         System.out.println("First Page of courses  " + courses  + " has total elements of " + totalElements);
+    }
+
+    @Test
+    public void findAllPaginationWithSorting_basic(){
+        Pageable firstPageWith1Records = PageRequest.of(1, 1);
+        Pageable secondPageWith1Records = PageRequest.of(2, 1);
+
+        List<Course> courses = courseRepository.findAll(firstPageWith1Records).getContent();
+
+        Long totalElements = courseRepository.findAll(firstPageWith1Records).getTotalElements();
+
+
+        System.out.println("First Page of courses  " + courses  + " has total elements of " + totalElements);
+    }
+
+    @Test
+    public void findByTitleWitPageRequest_basic(){
+        Pageable firstPageWith1Records = PageRequest.of(0, 1);
+
+        List<Course> courses = courseRepository.findByTitle("English", firstPageWith1Records).getContent();
+
+
+        System.out.println("First Page of courses  " + courses );
     }
 }
