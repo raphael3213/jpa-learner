@@ -66,6 +66,42 @@ public class StudentRepositoryTest {
         System.out.println("List of students with guardian hansel: " + studentList);
     }
 
+    @Test
+    public void printStudentByEmailIdCustomQuery_basicTest(){
+        Student student = studentRepository.findByEmailId("joel@gmail.com");
+
+        System.out.println("List of students with email joel@gmail.com : " + student);
+    }
+
+    @Test
+    public void printStudentFirstNameByEmailIdCustomQuery_basicTest(){
+        String studentFirstName = studentRepository.findFirstNameByEmailId("joel@gmail.com");
+
+        System.out.println("First name of student with email joel@gmail.com : " + studentFirstName);
+    }
+
+    @Test
+    public void printStudentFirstNameByEmailIdNativeQuery_basicTest(){
+        String studentFirstName = studentRepository.findFirstNameByEmailIdNativeQuery("joel@gmail.com");
+
+        System.out.println("First name of student with email joel@gmail.com : " + studentFirstName);
+    }
+
+    @Test
+    public void printStudentFirstNameByEmailIdNativeQueryWithNamedParam_basicTest(){
+        String studentFirstName = studentRepository.findFirstNameByEmailIdNativeQueryWithNamedParam("joel@gmail.com");
+
+        System.out.println("First name of student with email joel@gmail.com : " + studentFirstName);
+    }
+
+
+    @Test
+    public void updateStudentFirstNameByEmailId_basicTest(){
+        int updatedStudentId = studentRepository.updateStudentFirstNameByEmailID("raphael","joel@gmail.com");
+
+        System.out.println("Updated Student Id " + updatedStudentId);
+    }
+
 
 
 }
